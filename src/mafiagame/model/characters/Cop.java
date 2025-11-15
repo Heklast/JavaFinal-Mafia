@@ -15,7 +15,7 @@ public class Cop extends Human {
     private int noOfArrests;
     private int yearsOnTheJob;
     
-    public Cop(){}
+    public Cop(String name, int age){}
     
     public Cop(String name, 
             int age, 

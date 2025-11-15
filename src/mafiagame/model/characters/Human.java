@@ -35,7 +35,6 @@ abstract public class Human {
         this.name=name;
         this.age=age;
         this.gender=gender;
-
         this.favoriteDrink=favoriteDrink;
     }
     public Human(){}
@@ -52,35 +51,7 @@ abstract public class Human {
                 ", gender=" + gender+
                 ", favoriteDrink=" + favoriteDrink +"}";
     }
-    
-    //ALL THE METHODS ARE WRONG, I JUST WANTED TO WRITE THEM IN!
-    
-    public String getsKilled(){
-        return "Game Over"; //this doesnt print obvi
-    }
-    public static Gender chooseGender(Scanner s){
-         while (true) {
-            System.out.println("What gender do you want to be ?");
-            System.out.println("Male (m), female (f), undefined (u)?");
-            String input = s.nextLine().trim().toUpperCase();
 
-            switch (input) {
-                case "MALE", "M" -> {
-                    return Gender.MALE;
-                }
-                case "FEMALE", "F" -> {
-                    return Gender.FEMALE;
-                }
-                case "UNDEFINED", "U", "NONE" -> {
-                    return Gender.UNDEFINED;
-                }
-                default -> {
-                    System.out.println("Invalid choice. Please try again.");
-                }
-            }
-        }
-    }
-    
     abstract public void introduce();
 
 

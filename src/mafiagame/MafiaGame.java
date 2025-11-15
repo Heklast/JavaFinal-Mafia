@@ -15,6 +15,7 @@ import mafiagame.model.characters.MafiaMember;
 import mafiagame.model.characters.MafiaMember.Color;
 import mafiagame.model.characters.MafiaMember.Family;
 import mafiagame.scenes.BarScene;
+import mafiagame.scenes.BossScene;
 import mafiagame.scenes.CopScene;
 import mafiagame.scenes.DockScene;
 import mafiagame.scenes.HairdresserScene;
@@ -58,7 +59,7 @@ public class MafiaGame {
             }
         }
 
-        Gender gender = Human.chooseGender(keyboard);
+        Gender gender = askForGender(keyboard);
         Drink drink = askForFavoriteDrink(keyboard);
         Family family = askForFamily(keyboard);
         Color color = askForHairColor(keyboard);
@@ -76,11 +77,13 @@ public class MafiaGame {
                 0, false, new Knowledge("he is 2 meters")
         );
 
+        mafiaMember.introduce();
         // Scenes
         CopScene copScene = new CopScene(ui);
         BarScene barScene = new BarScene(ui, copScene);
         DockScene dockScene = new DockScene(ui);
         HairdresserScene hairdresserScene = new HairdresserScene(ui);
+        BossScene bossScene = new BossScene(ui);
 
         // ----- First choice: where to begin -----
         ui.println("Night falls over the city. The streets smell like rain and trouble.");
@@ -152,10 +155,10 @@ public class MafiaGame {
                 boolean died = mafiaMember.rollForDeath(roll);
                 if (died) {
                     String bossName = "Don " + mafiaMember.getFamily();
-                    MafiaBoss mafiaBoss = new MafiaBoss(bossName, 72, mafiaMember.getFamily());
-                    mafiaBoss.introduce();
+                    MafiaBoss mafiaBoss = new MafiaBoss(bossName);
+                    bossScene.play(mafiaMember, mafiaBoss);
                     ui.println("");
-                    ui.println("GAME OVER");
+                   
                 }
             }
         }
@@ -163,6 +166,30 @@ public class MafiaGame {
 
     // ----- helper methods for initial character creation -----
 
+
+    public static Gender askForGender(Scanner s){
+         while (true) {
+            System.out.println("What gender do you want to be ?");
+            System.out.println("Male (m), female (f), undefined (u)?");
+            String input = s.nextLine().trim().toUpperCase();
+
+            switch (input) {
+                case "MALE", "M" -> {
+                    return Gender.MALE;
+                }
+                case "FEMALE", "F" -> {
+                    return Gender.FEMALE;
+                }
+                case "UNDEFINED", "U", "NONE" -> {
+                    return Gender.UNDEFINED;
+                }
+                default -> {
+                    System.out.println("Invalid choice. Please try again.");
+                }
+            }
+        }
+    }
+    
     public static Family askForFamily(Scanner s) {
         while (true) {
             System.out.println("What Mafia Family do you want to be a part of ?");

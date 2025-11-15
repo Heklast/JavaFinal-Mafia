@@ -56,10 +56,10 @@ public class BarScene {
 
         double random = Math.random();
         if (random < 0.5) {
-            Cop cop = new Cop();
+            Cop cop = new Cop("David", 45);
             copScene.play(player, cop);
         } else {
-            BadCop badCop = new BadCop("Harold", 11);
+            BadCop badCop = new BadCop("Harold", 40);
             badCop.introduce();
             sellDrugs(player, badCop);
         }

@@ -1,19 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package mafiagame.behavior;
 
-import mafiagame.model.characters.MafiaMember;
-
 /**
- *
- * @author hekla
+ * Something (or someone) that can participate in illegal activity,
+ * such as a drug deal.
  */
 public interface IllegalActivity {
-    
-   // public void buyDrugs(MafiaMember mafiaMember);
-    //make mafiamember also implement
-    
-    public void drugDeal(MafiaMember m);
+
+    /**
+     * Perform a drug deal between this participant and the partner.
+     *
+     * @param partner the other participant in the activity
+     */
+    void drugDealWith(IllegalActivity partner);
 }

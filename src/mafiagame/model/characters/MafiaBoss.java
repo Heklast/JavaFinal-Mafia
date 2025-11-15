@@ -8,48 +8,25 @@ package mafiagame.model.characters;
  *
  * @author hekla
  */
-public class MafiaBoss extends MafiaMember{
-    
-    public enum Popularity{DEADMEAT, TOLERATED, FINE, LOVELY};
-    
+public class MafiaBoss extends MafiaMember {
+
+    private static final int DEFAULT_AGE = 72;
     private int yearsAsBoss;
-    private Popularity popularity;
-    
-    public MafiaBoss(String name,
-            int age, 
-            Gender gender, 
-            Drink favoriteDrink,
-            int yearsInTheMafia,
-            Color hairColor,
-            Family belongsToFamily,
-            int yearsAsBoss, 
-            Popularity popularity, 
-            int money
-    ){
-        super(name, age, gender, favoriteDrink, hairColor,belongsToFamily, money);
-        this.popularity=popularity;
-        this.yearsAsBoss=yearsAsBoss;
-       
+
+    public MafiaBoss(String name) {
+        super(name, DEFAULT_AGE);
+        this.yearsAsBoss = 10;
     }
-    public MafiaBoss(String name, int age, Family belongsToFamily){super(name,age);
-    this.belongsToFamily=belongsToFamily;}
     
     @Override
-    public void introduce() {
-        System.out.println("I am Mafia Boss " + this.getName() + " and I have heard you have been snitching to the cops about me !");
-        System.out.println("\"You should’ve stayed loyal,\" he growls.");
-        BossMan bossMan=new BossMan("Julio", 25);
-        System.out.println();
-        killHim(bossMan);
-    }
-     /**
-     * Killing the player.
-     * @param b BossMan who kills him
-     */
-    public void killHim(BossMan b){
-        System.out.println("You betray my beloved Boss, you DIE");
-        System.out.println("I'll take great pleasure in killing you, traitor");
+    public void introduce(){
+        System.out.println("\"Well well, you have not been a very good member of my mafia\" the boss growls.");
+        System.out.println("\"I have been the boss for " + DEFAULT_AGE + " years and never have I let betrayers live");
+        System.out.println("\"Will you be the first ?\" the boss asks.");
     }
 
-    
+    public boolean decidesToKill(double random) {
+        return random < 0.5;
+    }
 }
+

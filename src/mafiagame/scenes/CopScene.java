@@ -68,6 +68,8 @@ public class CopScene {
                     ui.println("");
                     ui.println("You take a deep breath and start talking about your mafia boss.");
                     ui.println("You tell him that " + revealed);
+                    ui.waitForEnter();
+                    ui.println("");
                 } else {
                     ui.println("You open your mouth, but nothing useful comes out.");
                 }
@@ -80,9 +82,8 @@ public class CopScene {
 
             player.increaseDeathChance(SNITCH_DEATH_INCREASE);
 
-            ui.println("Word like that doesn't stay secret for long.");
-            ui.println("If the boss hears about this, you're done.");
-            ui.println("But for now, you walk away with " + player.getMoney() + " dollars.");
+            ui.println("You snitched. Now only a matter of time Boss finds out about it");
+            ui.println("But at least you are up to " + player.getMoney() + " dollars.");
         } else {
             ui.println("You stare at the cop, then look away.");
             ui.println("\"I don't know anything,\" you say.");

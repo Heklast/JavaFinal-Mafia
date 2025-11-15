@@ -2,6 +2,8 @@ package mafiagame.scenes;
 
 import mafiagame.ConsoleUI;
 import mafiagame.model.characters.HairDresser;
+import mafiagame.model.characters.Human.Drink;
+import mafiagame.model.characters.Human.Gender;
 import mafiagame.model.characters.MafiaMember;
 import mafiagame.model.characters.MafiaMember.Color;
 
@@ -22,7 +24,7 @@ public class HairdresserScene {
         ui.println("Too recognizable. Too familiar. Too easy to find.");
         ui.waitForEnter();
 
-        HairDresser hairDresser = new HairDresser("Brad Pitt");
+        HairDresser hairDresser = new HairDresser("Klara", 25, Gender.FEMALE, Drink.FANTA,"Brad Pitt");
 
         ui.println("You step into the hair salon.");
         ui.waitForEnter();
