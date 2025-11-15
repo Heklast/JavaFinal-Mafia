@@ -40,8 +40,11 @@ public class Cop extends Human {
         ////waitForEnter(keyboard);
     }
 
-    public void arrest(){
-        System.out.print("You are under arrest !");
+    public void arrest(MafiaMember mafiaMember){
+        System.out.println();
+        System.out.println("'"+mafiaMember.getName() + ", you are under arrest !,' the cop says");
+        System.out.println("GAME OVER");
+        mafiaMember.setGameOver(true);
     }
 
     public int getYearsOnTheJob() {

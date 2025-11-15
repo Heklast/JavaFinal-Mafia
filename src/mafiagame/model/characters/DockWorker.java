@@ -70,9 +70,10 @@ public class DockWorker extends Human {
         System.out.println("Dock worker " + this.getName()
                 + " is a model citizen and calls the cops as soon as he sees a drug deal going on.");
         System.out.println("Blue lights flash across the water… sirens scream closer.");
-        System.out.println("You are surrounded before you can run.");
-        System.out.println("GAME OVER");
-        mafiaMember.setGameOver(true);
+        System.out.println("You are surrounded before you can run.");   
+        Cop cop = new Cop("David", 55, 30);
+        cop.arrest(mafiaMember);
+        
     }
 
 }
