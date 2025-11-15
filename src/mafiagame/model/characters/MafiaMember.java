@@ -41,9 +41,12 @@ public class MafiaMember extends Human implements IllegalActivity {
 
     @Override
     public void introduce() {
+        System.out.println();
         System.out.println("My name is " + this.getName()
-                + ". You remember it, you keep it quiet. Got it?");
-        System.out.println("One last big score and I'm out of this life for good...");
+                + ". You remember it but don't repeat it anywhere. Got it?");
+        System.out.println("I really want to get away from this dangerous life...");
+        System.out.println("500 dollars and I will have enough to live in peace ! ");
+        System.out.println("But I have to do it without dying or getting arrested in the process...");
         System.out.println();
     }
 

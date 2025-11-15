@@ -32,14 +32,25 @@ public class MafiaGame {
         ConsoleUI ui = new ConsoleUI(keyboard);
 
         ui.println("Welcome to Mafia City ! ");
-        ui.println("REMINDER: during the game you will have to press ENTER to keep on with the story)");
+        ui.println("REMINDER: during the game you will have to press ENTER to keep on with the game");
+        ui.println("The goal of the game is to get to 500 dollars without dying or getting arrested");
         ui.println("");
 
         ui.println("First, we need some information about you ! ");
         ui.println("");
+        ui.waitForEnter();
 
-        ui.println("What is your name ?");
-        String name = keyboard.nextLine();
+        String name;
+        while (true) {
+            ui.println("What is your name ? (type it and then press enter)");
+            name = keyboard.nextLine().trim();
+
+            if (name.matches("[A-Za-z]+")) {
+                break;
+            }
+
+            ui.println("Invalid name. No numbers or special characters.");
+        }
 
         ui.println("how old are you ?");
         int age = -1;
@@ -47,7 +58,7 @@ public class MafiaGame {
         while (!Human.isAgeOkay(age)) {
             try {
                 age = keyboard.nextInt();
-                keyboard.nextLine(); // clear leftover newline
+                keyboard.nextLine(); 
 
                 if (!Human.isAgeOkay(age)) {
                     ui.println("You have to be at least 1 year old and not older than a 100 years old!");
@@ -65,7 +76,6 @@ public class MafiaGame {
         Family family = askForFamily(keyboard);
         Color color = askForHairColor(keyboard);
 
-        // extra age check (kept from your original code)
         while (!Human.isAgeOkay(age)) {
             ui.println("You have to be at least 1 year old !");
             ui.println("Choose another age");
@@ -79,14 +89,14 @@ public class MafiaGame {
         );
 
         mafiaMember.introduce();
-        // Scenes
+        ui.waitForEnter();
+
         CopScene copScene = new CopScene(ui);
         BarScene barScene = new BarScene(ui, copScene);
         DockScene dockScene = new DockScene(ui);
         HairdresserScene hairdresserScene = new HairdresserScene(ui);
         BossScene bossScene = new BossScene(ui);
 
-        // ----- First choice: where to begin -----
         ui.println("Night falls over the city. The streets smell like rain and trouble.");
         ui.waitForEnter();
         ui.println("You need cash if you ever want to walk away from the family.");
@@ -97,6 +107,7 @@ public class MafiaGame {
 
         while (true) {
             String where = ui.ask("Choose (b/d): ").trim().toLowerCase();
+            ui.println("");
             switch (where) {
                 case "b" -> {
                     barScene.play(mafiaMember);
@@ -159,17 +170,15 @@ public class MafiaGame {
                     MafiaBoss mafiaBoss = new MafiaBoss(bossName);
                     bossScene.play(mafiaMember, mafiaBoss);
                     ui.println("");
-                   
+
                 }
             }
         }
     }
 
     // ----- helper methods for initial character creation -----
-
-
-    public static Gender askForGender(Scanner s){
-         while (true) {
+    public static Gender askForGender(Scanner s) {
+        while (true) {
             System.out.println("What gender do you want to be ?");
             System.out.println("Male (m), female (f), undefined (u)?");
             String input = s.nextLine().trim().toUpperCase();
@@ -190,7 +199,7 @@ public class MafiaGame {
             }
         }
     }
-    
+
     public static Family askForFamily(Scanner s) {
         while (true) {
             System.out.println("What Mafia Family do you want to be a part of ?");

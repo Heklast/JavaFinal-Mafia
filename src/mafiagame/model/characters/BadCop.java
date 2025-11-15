@@ -13,8 +13,9 @@ public class BadCop extends Human implements IllegalActivity {
 
     @Override
     public void introduce() {
-        System.out.println("Relax. I am a cop only on paper.");
-        System.out.println("I just want some drugs.");
+        System.out.println("'Relax. I am a cop only on paper.'");
+        System.out.println("'I just want some drugs,' he says");
+        System.out.println();
     }
 
     /**
@@ -23,12 +24,6 @@ public class BadCop extends Human implements IllegalActivity {
     @Override
     public void drugDealWith(IllegalActivity partner) {
         introduce();
-
-        if (partner instanceof MafiaMember mafia) {
-            // Mafia handles the transaction from their side
-            mafia.drugDealWith(this);
-        } else {
-            System.out.println("This cop only does business with mafia members.");
-        }
+            partner.drugDealWith(this);
     }
 }

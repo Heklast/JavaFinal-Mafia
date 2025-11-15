@@ -52,22 +52,14 @@ public class BarScene {
 
         double random = Math.random();
         if (random < 0.5) {
-            Cop cop = new Cop("David", 45);
+            Cop cop = new Cop("David", 55, 30);
             copScene.play(player, cop);
         } else {
             BadCop badCop = new BadCop("Harold", 40);
             badCop.introduce();
-            sellDrugs(player, badCop);
+            badCop.drugDealWith(player);
         }
 
         ui.waitForEnter();
-    }
-
-    private void sellDrugs(MafiaMember player, BadCop badCop) {
-        ui.println("You don't want any problems and you desperately need the money to disappear.");
-        ui.println("You slowly slide him the plastic bag and take the money from his outstretched hand.");
-        ui.println("50 dollars. One step closer to freedom.");
-        player.addMoney(DRUG_SALE_AMOUNT);
-        ui.println("You now have " + player.getMoney() + " dollars.");
     }
 }
