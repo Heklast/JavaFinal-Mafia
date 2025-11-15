@@ -21,7 +21,7 @@ public class BossMan extends MafiaMember {
             int age, 
             Gender gender, 
             Drink favoriteDrink,
-            String hairColor,
+            Color hairColor,
             int noOfKills, 
             Family belongsToFamily,
             //int amountOfDrugsSold, skip because we have money? goal to get an x amount of money and kills

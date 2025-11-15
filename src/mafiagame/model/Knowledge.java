@@ -11,9 +11,7 @@ import java.util.List;
  *
  * @author hekla
  */
-public class Knowledge { //was thinking we could do some knowledge thing for the cops so 
-   // trying to figure out the drugdeals, or haircolor of the mafia member, composition here, same as with money
-    //so the goal of cop is to get the mafiamember, the goal of mafiamember is to become the boss (x money, x kills)
+public class Knowledge {
     private String info;
     
     public Knowledge(String info){

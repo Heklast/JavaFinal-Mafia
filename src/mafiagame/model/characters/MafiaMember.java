@@ -21,8 +21,12 @@ public class MafiaMember extends Human {
     public enum Family {
         CORVETTA, JULIO
     };
+    
+    public enum Color {
+        RED,BLUE,BLONDE,BRUNETTE
+    };
 
-    private String hairColor;
+    private Color hairColor;
     public Family belongsToFamily;
     private int money;
     private boolean gameOver;
@@ -36,7 +40,7 @@ public class MafiaMember extends Human {
             int age,
             Gender gender,
             Drink favoriteDrink,
-            String hairColor,
+            Color hairColor,
             Family belongsToFamily,
             int money, boolean gameOver, Knowledge knowledge
     ) {
@@ -53,7 +57,7 @@ public class MafiaMember extends Human {
             int age,
             Gender gender,
             Drink favoriteDrink,
-            String hairColor,
+            Color hairColor,
             Family belongsToFamily,
             int money) {
         super(name, age, gender, favoriteDrink);
@@ -78,7 +82,7 @@ public class MafiaMember extends Human {
         System.out.println("You now have " + this.money + " dollars.");
     }
 
-    public String getHairColor() {
+    public Color getHairColor() {
         return this.hairColor;
     }
 
@@ -131,12 +135,11 @@ public class MafiaMember extends Human {
 
     public void whereToGoNext() {
         Scanner keyboard = new Scanner(System.in);
-        System.out.println("The night isn’t over yet.");
         System.out.println("You still need more money if you want to get out alive.");
-        System.out.println("What’s your next move?");
-        System.out.println("  (b) Hit the bar for another round");
-        System.out.println("  (d) Head back to the docks for another deal");
-        System.out.println("  (h) Visit the hairdresser to change your look");
+        System.out.println("What's your next move?");
+        System.out.println("  (b) Hit the bar");
+        System.out.println("  (d) To the docks for a drug deal");
+        System.out.println("  (h) Visit the hairdresser");
         System.out.println();
 
         while (true) {
@@ -253,7 +256,7 @@ public class MafiaMember extends Human {
                 System.out.println("The Dock Worker pockets the cash and looks away, pretending not to see you.");
             } else {
                 System.out.println("He does not accept the Bribe, it is less than what he wants.");
-                System.out.println("You’ll have to go through with the deal and hope he keeps quiet.");
+                System.out.println("You'll have to go through with the deal and hope he keeps quiet.");
                 handleUnbribedDock(keyboard, dockWorker);
             }
         } else {
@@ -268,16 +271,16 @@ public class MafiaMember extends Human {
             System.out.println("The Dock Worker hesitates, then reaches for his phone...");
             dockWorker.callsCops(Boolean.TRUE, this);
         } else {
-            System.out.println("The Dock Worker shrugs and lights a cigarette. Maybe he doesn’t care enough to call.");
+            System.out.println("The Dock Worker shrugs and lights a cigarette. Maybe he doesn't care enough to call.");
             waitForEnter(keyboard);
 
             System.out.println("The dock is almost empty. Just a hunched figure sitting alone on a bench.");
-            System.out.println("Exactly where he said he’d be.");
+            System.out.println("Exactly where he said he'd be.");
             waitForEnter(keyboard);
             System.out.println("You walk over, hand him the package, and he slides 50 dollars into your pocket.");
             this.money += 50;
             waitForEnter(keyboard);
-            System.out.println("Deal done. No shots. No sirens. Could’ve gone worse.");
+            System.out.println("Deal done. No shots. No sirens. Could've gone worse.");
             waitForEnter(keyboard);
             System.out.println("You head home and collapse into bed.");
             waitForEnter(keyboard);
@@ -288,7 +291,7 @@ public class MafiaMember extends Human {
 
     public void changeHairColor() {
         Scanner keyboard = new Scanner(System.in);
-        System.out.println("You catch your reflection in a shop window and don’t like what you see.");
+        System.out.println("You catch your reflection in a shop window and don't like what you see.");
         System.out.println("Too recognizable. Too familiar. Too easy to find.");
         waitForEnter(keyboard);
 
@@ -303,14 +306,14 @@ public class MafiaMember extends Human {
         System.out.println("Right now, your hair color is: " + this.getHairColor());
         waitForEnter(keyboard);
 
-        System.out.println("If you change it completely, it’ll be harder for anyone to track you down.");
+        System.out.println("If you change it completely, it'll be harder for anyone to track you down.");
         System.out.println("A full color change costs 30 dollars.");
         System.out.println("You currently have " + getMoney() + " dollars.");
         System.out.println();
 
         if (this.getMoney() > 30) {
             System.out.println("The hairdresser seems chatty. Chatty people hear things.");
-            System.out.println("Maybe you’ll walk out with a new look… and some new gossip.");
+            System.out.println("Maybe you'll walk out with a new look… and some new gossip.");
 
             String colorChange;
             while (true) {
@@ -340,12 +343,12 @@ public class MafiaMember extends Human {
                         case "red":
                         case "blue":
                             if (newColor.equals(this.hairColor)) {
-                                System.out.println("That’s already your color. Pick something different if you want to hide.");
+                                System.out.println("That's already your color. Pick something different if you want to hide.");
                                 continue;
                             }
                             break;
                         default:
-                            System.out.println("That’s not a color we do. Type blonde, brunette, red, or blue.");
+                            System.out.println("That's not a color we do. Type blonde, brunette, red, or blue.");
                             continue;
                     }
                     // valid new color and different from current
@@ -353,15 +356,14 @@ public class MafiaMember extends Human {
                 }
 
                 this.money -= 30;
-                this.hairColor = newColor;
-                System.out.println("The scissors dance, dye burns, and time passes...");
-                waitForEnter(keyboard);
+                this.hairColor = Color.valueOf(newColor.trim().toUpperCase());
                 hairDresser.talk();
                 hairDresser.gossip(this);
                 waitForEnter(keyboard);
                 System.out.println("You leave the salon looking like a different person.");
-                System.out.println("And you’ve got fresh gossip that the cops might pay for one day.");
-                System.out.println("“I could make some real money with this info,” you think.");
+                System.out.println("And you've got fresh gossip that the cops might pay for one day.");
+                System.out.println("'I could make some real money with this info,' you think.");
+                
             } else {
                 System.out.println("You settle for a simple cut. Cleaner, sharper, but still you.");
                 waitForEnter(keyboard);
@@ -386,10 +388,10 @@ public class MafiaMember extends Human {
         int amountOfInfo = (k == null) ? 0 : k.size();
 
         if (amountOfInfo == 0) {
-            System.out.println("You rack your brain, but you don’t really have anything on the boss yet.");
+            System.out.println("You rack your brain, but you don't really have anything on the boss yet.");
         } else {
             try {
-                System.out.println("You remember the secrets you’ve picked up over time...");
+                System.out.println("You remember the secrets you've picked up over time...");
                 List<String> infos = k.getInfo();
 
                 String firstSecret = infos.get(0); // one piece only
@@ -399,9 +401,9 @@ public class MafiaMember extends Human {
             }
 
             waitForEnter(keyboard);
-            System.out.println("The cop leans closer. \"You look like someone who’s tired of taking orders,\" he says.");
+            System.out.println("The cop leans closer. \"You look like someone who's tired of taking orders,\" he says.");
             System.out.println("If you talk, you could walk away with serious money...");
-            System.out.println("But if the boss finds out, you’re as good as dead.");
+            System.out.println("But if the boss finds out, you're as good as dead.");
             System.out.println();
 
             String valid;
@@ -414,7 +416,7 @@ public class MafiaMember extends Human {
                     case "n":
                         break;
                     default:
-                        System.out.println("That’s not an option. You either snitch (y) or you keep your mouth shut (n).");
+                        System.out.println("That's not an option. You either snitch (y) or you keep your mouth shut (n).");
                         continue;
                 }
                 break;
@@ -433,8 +435,8 @@ public class MafiaMember extends Human {
                     if (!infos.isEmpty()) {
                         String revealed = infos.get(0); // one piece at a time
                         System.out.println();
-                        System.out.println("You take a deep breath and start talking.");
-                        System.out.println("You reveal: " + revealed);
+                        System.out.println("You take a deep breath and start talking about your mafia boss.");
+                        System.out.println("You tell him that " + revealed);
                     } else {
                         System.out.println("You open your mouth, but nothing useful comes out.");
                     }
@@ -453,12 +455,12 @@ public class MafiaMember extends Human {
                 deathChance = 1.0; // cap at 100%
             }
 
-            System.out.println("Word like that doesn’t stay secret for long.");
-            System.out.println("If the boss hears about this, you’re done.");
+            System.out.println("Word like that doesn't stay secret for long.");
+            System.out.println("If the boss hears about this, you're done.");
             System.out.println("But for now, you walk away with " + this.money + " dollars.");
         } else {
             System.out.println("You stare at the cop, then look away.");
-            System.out.println("\"I don’t know anything,\" you say.");
+            System.out.println("\"I don't know anything,\" you say.");
             System.out.println("Loyalty might save you. Or doom you.");
         }
     }
@@ -473,7 +475,7 @@ public class MafiaMember extends Human {
         this.introduce();
         dockWorker.introduce();
         System.out.println("You pull the Dock Worker aside, away from prying eyes.");
-        System.out.println("\"You didn’t see anything tonight,\" you whisper.");
+        System.out.println("\"You didn't see anything tonight,\" you whisper.");
         System.out.println("You press a wad of cash into his hand.");
         this.money -= 70;
         System.out.println("He nods slowly. Fear does the rest.");

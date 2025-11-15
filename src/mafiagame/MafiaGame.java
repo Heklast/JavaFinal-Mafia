@@ -12,6 +12,7 @@ import mafiagame.model.characters.Human;
 import mafiagame.model.characters.Human.Drink;
 import mafiagame.model.characters.Human.Gender;
 import mafiagame.model.characters.MafiaMember;
+import mafiagame.model.characters.MafiaMember.Color;
 import mafiagame.model.characters.MafiaMember.Family;
 
 /**
@@ -59,10 +60,7 @@ public class MafiaGame {
         Gender gender = askForGender(keyboard);
         Drink drink = askForFavoriteDrink(keyboard);
         Family family = askForFamily(keyboard);
-
-        System.out.println("What haircolor do you want to have ?");
-
-        String hair = keyboard.nextLine();
+        Color color=askForHairColor(keyboard);
 
         //put all of them here
         while (!Human.isAgeOkay(age)) {
@@ -73,7 +71,7 @@ public class MafiaGame {
         }
 
         //mafiaMember
-        MafiaMember mafiaMember = new MafiaMember(name, age, gender, drink, hair, family, 0, false, new Knowledge("he is 2 meters"));
+        MafiaMember mafiaMember = new MafiaMember(name, age, gender, drink, color, family, 0, false, new Knowledge("he is 2 meters"));
         mafiaMember.whereToBegin();
         while (!mafiaMember.getGameOver()) {
             mafiaMember.whereToGoNext();
@@ -152,4 +150,31 @@ public class MafiaGame {
             }
         }
     }
+    
+    public static Color askForHairColor(Scanner s) {
+        while (true) {
+            System.out.println("What hair color do you want to have ?");
+            System.out.println("Red (r), blue (b), blonde (bl), brunette (br) ?");
+            String input = s.nextLine().trim().toUpperCase();
+
+            switch (input) {
+                case "RED", "R" -> {
+                    return Color.RED;
+                }
+                case "BLUE", "B" -> {
+                    return Color.BLUE;
+                }
+                case "BLONDE", "BL" -> {
+                    return Color.BLONDE;
+                }
+                case "BRUNETTE", "BR" -> {
+                    return Color.BRUNETTE;
+                }
+                default -> {
+                    System.out.println("Invalid choice. Please try again.");
+                }
+            }
+        }
+    }
+    
 }

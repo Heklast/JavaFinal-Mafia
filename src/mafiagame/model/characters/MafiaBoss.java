@@ -20,7 +20,7 @@ public class MafiaBoss extends MafiaMember{
             Gender gender, 
             Drink favoriteDrink,
             int yearsInTheMafia,
-            String hairColor,
+            Color hairColor,
             Family belongsToFamily,
             int yearsAsBoss, 
             Popularity popularity, 

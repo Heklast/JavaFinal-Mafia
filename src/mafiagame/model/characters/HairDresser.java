@@ -41,17 +41,18 @@ public class HairDresser extends Human{
     public void gossip(MafiaMember mafiaMember){
         Random r=new Random();
         String info=gossip[r.nextInt(gossip.length)];
-        System.out.println("Yeah so my favorite actor is " + this.getFavActor());
-        System.out.println("And I just had the Mafia Boss at the haircut earlier today and he told me " + info);
+        System.out.println("Yeah so my favorite actor is " + this.getFavActor() + "and I actually just");
+        System.out.println(" did the " + mafiaMember.getFamily()+" mafia Boss' hair earlier today and he told me " + info);
         mafiaMember.getKnowledge().addInfo(info);
     }
     
     public void talk(){
-        System.out.println("Ahhh how fun you decided to get a hair color change.");
+        System.out.println("'Ahhh how fun you decided to get a hair color change.");
         System.out.println("It was for sure the right decision, your hair is looking so boring right now !");
-        System.out.println("Well let's start, did you know my favorite actor is " + this.getFavActor());
+        System.out.println("Well let's start, did you know my favorite actor is " + this.getFavActor() +"'");
         System.out.println();
         System.out.println("Rohh this is going to be a treat listening to her... ");
+        System.out.println();
     }
        
     public String getFavActor(){

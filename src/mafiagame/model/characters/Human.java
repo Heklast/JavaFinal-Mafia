@@ -13,6 +13,7 @@ abstract public class Human {
     public enum Gender{FEMALE, MALE, UNDEFINED};
     public enum Drink{BEER, WATER, FANTA};
     
+    
     private String name;
     private int age;
     private Gender gender;
