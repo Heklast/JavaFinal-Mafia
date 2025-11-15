@@ -25,6 +25,12 @@ public class MafiaBoss extends MafiaMember {
         System.out.println("\"Will you be the first ?\" the boss asks.");
     }
 
+     /**
+     * 50/50 toss whether the Mafia Boss decides to kill the player when he finds him
+     *
+     * @return boolean that says whether he decided to kill or not to kill
+     * @param random math.random whether boss decides to kill or not
+     */
     public boolean decidesToKill(double random) {
         return random < 0.5;
     }

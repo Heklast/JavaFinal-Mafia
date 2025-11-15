@@ -54,7 +54,9 @@ public class MafiaGame {
 
         ui.println("how old are you ?");
         int age = -1;
-
+        
+        // Checking whether age is okay with a static method in Human class
+        // and error handling
         while (!Human.isAgeOkay(age)) {
             try {
                 age = keyboard.nextInt();
@@ -76,16 +78,10 @@ public class MafiaGame {
         Family family = askForFamily(keyboard);
         Color color = askForHairColor(keyboard);
 
-        while (!Human.isAgeOkay(age)) {
-            ui.println("You have to be at least 1 year old !");
-            ui.println("Choose another age");
-            age = keyboard.nextInt();
-            keyboard.nextLine();
-        }
-
+        // You start with one knowledge under your belt
         MafiaMember mafiaMember = new MafiaMember(
                 name, age, gender, drink, color, family,
-                0, false, new Knowledge("he is 2 meters")
+                0, false, false, new Knowledge("he is 2 meters")
         );
 
         mafiaMember.introduce();
@@ -105,6 +101,7 @@ public class MafiaGame {
         ui.println("or go down to the docks to handle a drug deal (d).");
         ui.println("");
 
+        // First action, only bar or dock to begin
         while (true) {
             String where = ui.ask("Choose (b/d): ").trim().toLowerCase();
             ui.println("");
@@ -117,6 +114,7 @@ public class MafiaGame {
                     dockScene.play(mafiaMember);
                     break;
                 }
+                
                 default -> {
                     ui.println("Invalid choice. Type 'b' for bar or 'd' for docks.");
                     continue;
@@ -125,8 +123,8 @@ public class MafiaGame {
             break;
         }
 
-        // ----- Main loop: choose next actions until game over -----
-        while (!mafiaMember.getGameOver()) {
+        // The main game loop
+        while (!mafiaMember.getGameOver()  !mafiaMember.getMoney()<500 ) {
             ui.println("You still need more money if you want to get out alive.");
             ui.println("What's your next move?");
             ui.println("  (b) Hit the bar");
@@ -158,25 +156,26 @@ public class MafiaGame {
                 break;
             }
 
-            // Death roll (was doYouDie)
-            if (!mafiaMember.getGameOver()) {
-                ui.println("Your current chance of getting whacked is: " + (mafiaMember.getDeathChance() * 100) + "%");
+            //After every action, we roll a dice whether the mafia boss finds him or not for snitching      
+            if (!mafiaMember.getBossFindsYou()) {
                 double roll = Math.random();
-                ui.println("The night rolls the dice... (" + roll + ")");
 
-                boolean died = mafiaMember.rollForDeath(roll);
-                if (died) {
+                boolean found = mafiaMember.rollForFoundByBoss(roll);
+                if (found) {
                     String bossName = "Don " + mafiaMember.getFamily();
                     MafiaBoss mafiaBoss = new MafiaBoss(bossName);
                     bossScene.play(mafiaMember, mafiaBoss);
                     ui.println("");
-
                 }
             }
         }
+        if(mafiaMember.getMoney()>=500){
+            System.out.println("You are free from the Mafia ! CONGRATULATIONS !");
+            System.out.println("Enjoy your life !!!!");
+        }
     }
 
-    // ----- helper methods for initial character creation -----
+    // helper methods for initial character creation, make sure we have the right input
     public static Gender askForGender(Scanner s) {
         while (true) {
             System.out.println("What gender do you want to be ?");

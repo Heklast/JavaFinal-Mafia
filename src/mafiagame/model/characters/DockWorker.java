@@ -17,11 +17,13 @@ public class DockWorker extends Human {
      * for the current scene.
      */
     public DockWorker() {
-        // some reasonable default values
         super("Earl", 50, Gender.MALE, Drink.BEER);
         this.bribed = false;
     }
-
+    
+    /**
+     * A constructor we could use if we develop the game further, decided not to use now
+     */
     public DockWorker(String name,
                       int age,
                       Gender gender,
@@ -29,7 +31,6 @@ public class DockWorker extends Human {
                       Boolean bribed) {
 
         super(name, age, gender, favoriteDrink);
-        // if the Boolean is null, treat it as false
         this.bribed = (bribed != null && bribed);
     }
 
@@ -39,7 +40,7 @@ public class DockWorker extends Human {
                 + " looks up from his clipboard, startled.");
     }
 
-    public boolean isBribed() {
+    public boolean getBribed() {
         return bribed;
     }
 
@@ -48,19 +49,13 @@ public class DockWorker extends Human {
     }
 
     /**
-     * Called when the dock worker sees (or could see) a drug deal.
-     * If he is not bribed, he calls the cops and the game ends.
+     * Called when the dock worker calls the cops
+     * If he is not bribed, it's a 50/50 toss he calls the cops and the game ends.
      * If he has been bribed, he chooses to stay quiet.
      *
-     * @param sawDeal      true if he clearly saw the deal
      * @param mafiaMember  the main character, used to end the game
      */
-    public void callsCops(Boolean sawDeal, MafiaMember mafiaMember) {
-        // safety: only act if we actually saw something
-        if (!Boolean.TRUE.equals(sawDeal)) {
-            return;
-        }
-
+    public void callsCops(MafiaMember mafiaMember) {
         if (this.bribed) {
             System.out.println(this.getName()
                     + " reaches for his phone, then feels the money in his pocket.");

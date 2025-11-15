@@ -71,7 +71,7 @@ public class DockScene {
         double random = Math.random();
         if (random > 0.5) {
             ui.println("The Dock Worker hesitates, then reaches for his phone...");
-            dockWorker.callsCops(Boolean.TRUE, player);
+            dockWorker.callsCops(player);
         } else {
             ui.println("The Dock Worker shrugs and lights a cigarette. Maybe he doesn't care enough to call.");
             ui.waitForEnter();
