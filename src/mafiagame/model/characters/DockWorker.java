@@ -67,8 +67,6 @@ public class DockWorker extends Human {
             System.out.println("He sighs, looks away and pretends he saw nothing.");
             return;
         }
-
-        System.out.println("Wrong decision!");
         System.out.println("Dock worker " + this.getName()
                 + " is a model citizen and calls the cops as soon as he sees a drug deal going on.");
         System.out.println("Blue lights flash across the water… sirens scream closer.");

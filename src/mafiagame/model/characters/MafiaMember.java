@@ -8,6 +8,7 @@ package mafiagame.model.characters;
  *
  * @author hekla
  */
+import java.util.List;
 import java.util.Scanner;
 import mafiagame.model.Knowledge;
 import mafiagame.model.Money;
@@ -63,7 +64,7 @@ public class MafiaMember extends Human {
 
     @Override
     public void introduce() {
-           System.out.println("My name is " + this.getName()
+        System.out.println("My name is " + this.getName()
                 + ". You remember it, you keep it quiet. Got it?");
         System.out.println("One last big score and I'm out of this life for good...");
         System.out.println();
@@ -84,15 +85,15 @@ public class MafiaMember extends Human {
     public Knowledge getKnowledge() {
         return knowledge;
     }
-    
-     public int getMoney() {
+
+    public int getMoney() {
         return this.money;
     }
-     
+
     public Family getFamily() {
         return this.belongsToFamily;
     }
-    
+
     public boolean getGameOver() {
         return this.gameOver;
     }
@@ -128,7 +129,7 @@ public class MafiaMember extends Human {
         }
     }
 
-     public void whereToGoNext() {
+    public void whereToGoNext() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("The night isn’t over yet.");
         System.out.println("You still need more money if you want to get out alive.");
@@ -137,12 +138,12 @@ public class MafiaMember extends Human {
         System.out.println("  (d) Head back to the docks for another deal");
         System.out.println("  (h) Visit the hairdresser to change your look");
         System.out.println();
-        
-        while (true){
-            System.out.print("Choose (b/d/h)");
-            String where = keyboard.nextLine().toLowerCase();
-            
-            switch (where){
+
+        while (true) {
+            System.out.print("Choose (b/d/h): ");
+            String where = keyboard.nextLine().trim().toLowerCase();
+
+            switch (where) {
                 case "b":
                     goToTheBar();
                     return;
@@ -157,15 +158,27 @@ public class MafiaMember extends Human {
             }
         }
     }
-    
+
     public void goToTheBar() {
         Scanner keyboard = new Scanner(System.in);
+        Bartender bartender = new Bartender(
+            "Sam",
+            45,
+            Gender.MALE,
+            Drink.BEER,
+            Boolean.TRUE // friendly bartender
+        );
+            
         System.out.println("You push open the door to your regular bar.");
         System.out.println("The air is thick with smoke. Glasses clink, people mumble.");
         waitForEnter(keyboard);
-
+        System.out.println("You take a seat at the counter.");
+        bartender.introduce();
         System.out.println("You order a large " + this.getFavoriteDrink()
                 + ", your favorite. The bartender nods without asking.");
+        waitForEnter(keyboard);
+        
+        bartender.gossip();
         waitForEnter(keyboard);
 
         System.out.println("You feel a presence behind you. Heavy footsteps. A shadow on the floor.");
@@ -201,23 +214,24 @@ public class MafiaMember extends Human {
                 break;
             }
         }
-        System.out.println();    }
+        System.out.println();
+    }
 
     public void drugDeal() {
         Scanner keyboard = new Scanner(System.in);
         DockWorker dockWorker = new DockWorker();
 
         System.out.println("You make your way down to the docks.");
-        System.out.println("It's cold and dark.");
+        System.out.println("It is cold and dark.");
         waitForEnter(keyboard);
-        System.out.println("You know the Dock Worker might see something he shouldn’t.");
+        System.out.println("You know the Dock Worker might see something he should not.");
         System.out.println("You can try to buy his silence for 70 dollars.");
         System.out.println("Right now, you have " + this.getMoney() + " dollars.");
         System.out.println();
 
         String bribeChoice;
         while (true) {
-            System.out.print("Do you bribe him or take your chances? (bribe/not bribe): ");
+            System.out.print("Do you try to bribe him or take your chances? (bribe/not bribe): ");
             bribeChoice = keyboard.nextLine().trim().toLowerCase();
 
             switch (bribeChoice) {
@@ -234,11 +248,12 @@ public class MafiaMember extends Human {
         if ("bribe".equals(bribeChoice)) {
             if (this.money >= 70) {
                 bribeWorker(dockWorker);
+                dockWorker.setBribed(true);
                 waitForEnter(keyboard);
                 System.out.println("The Dock Worker pockets the cash and looks away, pretending not to see you.");
             } else {
-                System.out.println("You check your pockets. Not enough cash to bribe him.");
-                System.out.println("You’ll have to take your chances instead.");
+                System.out.println("He does not accept the Bribe, it is less than what he wants.");
+                System.out.println("You’ll have to go through with the deal and hope he keeps quiet.");
                 handleUnbribedDock(keyboard, dockWorker);
             }
         } else {
@@ -247,7 +262,7 @@ public class MafiaMember extends Human {
     }
 
     private void handleUnbribedDock(Scanner keyboard, DockWorker dockWorker) {
-        System.out.println("You decide to save your money and leave to do the drug deal hoping for the best.");
+        System.out.println("You leave to do the drug deal.");
         double random = Math.random();
         if (random > 0.5) {
             System.out.println("The Dock Worker hesitates, then reaches for his phone...");
@@ -271,17 +286,17 @@ public class MafiaMember extends Human {
         }
     }
 
-public void changeHairColor() {
+    public void changeHairColor() {
         Scanner keyboard = new Scanner(System.in);
         System.out.println("You catch your reflection in a shop window and don’t like what you see.");
         System.out.println("Too recognizable. Too familiar. Too easy to find.");
         waitForEnter(keyboard);
 
         HairDresser hairDresser = new HairDresser("Brad Pitt");
-        hairDresser.introduce();
-        waitForEnter(keyboard);
 
         System.out.println("You step into the hair salon.");
+        waitForEnter(keyboard);
+        hairDresser.introduce();
         System.out.println("Haircut or new hair color?");
         waitForEnter(keyboard);
 
@@ -363,8 +378,7 @@ public void changeHairColor() {
         waitForEnter(keyboard);
     }
 
-
- public void meetCop(Cop cop) {
+    public void meetCop(Cop cop) {
         Scanner keyboard = new Scanner(System.in);
         cop.introduce();
 
@@ -374,8 +388,16 @@ public void changeHairColor() {
         if (amountOfInfo == 0) {
             System.out.println("You rack your brain, but you don’t really have anything on the boss yet.");
         } else {
-            System.out.println("You remember the secrets you’ve picked up over time...");
-            System.out.println("You know some valuable things about the boss: " + this.getKnowledge().getInfo());
+            try {
+                System.out.println("You remember the secrets you’ve picked up over time...");
+                List<String> infos = k.getInfo();
+
+                String firstSecret = infos.get(0); // one piece only
+                System.out.println("You know at least one useful thing about the boss: " + firstSecret);
+            } catch (Exception e) {
+                System.out.println("Your mind goes blank for a moment. You struggle to remember details.");
+            }
+
             waitForEnter(keyboard);
             System.out.println("The cop leans closer. \"You look like someone who’s tired of taking orders,\" he says.");
             System.out.println("If you talk, you could walk away with serious money...");
@@ -405,17 +427,25 @@ public void changeHairColor() {
 
     public void snitch(Boolean s) {
         if (s) {
-            // safe removal: only if knowledge and list are not null/empty
-            if (this.getKnowledge() != null
-                    && this.getKnowledge().getInfo() != null
-                    && !this.getKnowledge().getInfo().isEmpty()) {
-                this.getKnowledge().getInfo().remove(0);
+            try {
+                if (this.getKnowledge() != null) {
+                    List<String> infos = this.getKnowledge().getInfo();
+                    if (!infos.isEmpty()) {
+                        String revealed = infos.get(0); // one piece at a time
+                        System.out.println();
+                        System.out.println("You take a deep breath and start talking.");
+                        System.out.println("You reveal: " + revealed);
+                    } else {
+                        System.out.println("You open your mouth, but nothing useful comes out.");
+                    }
+                } else {
+                    System.out.println("You try to remember, but you never really paid attention to the boss.");
+                }
+            } catch (Exception e) {
+                System.out.println("Your thoughts get tangled. You can't remember the details clearly.");
             }
 
             money += 100;
-            System.out.println();
-            System.out.println("You take a deep breath and start talking.");
-            System.out.println("Names. Places. Deals. You spill it all.");
             Cop.copApplausesMM(this);
 
             deathChance += 0.2;
@@ -449,20 +479,24 @@ public void changeHairColor() {
         System.out.println("He nods slowly. Fear does the rest.");
         System.out.println("You now have " + this.money + " dollars left.");
     }
-    
-    public boolean doYouDie() {
-        System.out.println("Your current chance of getting whacked is: " + (deathChance * 100) + "%");
-        double roll = Math.random();
-        System.out.println("The night rolls the dice... (" + roll + ")");
-        if (roll < deathChance) {
-            String bossName = "Don " + this.getFamily();
-            MafiaBoss mafiaBoss = new MafiaBoss(bossName, 72, this.getFamily());
-            mafiaBoss.introduce();
-            System.out.println();
-            System.out.println("GAME OVER");
-            gameOver = true;
-        }
-        return gameOver;
+
+ public boolean doYouDie() {
+    if (gameOver) {
+        return true;
     }
+
+    System.out.println("Your current chance of getting whacked is: " + (deathChance * 100) + "%");
+    double roll = Math.random();
+    System.out.println("The night rolls the dice... (" + roll + ")");
+    if (roll < deathChance) {
+        String bossName = "Don " + this.getFamily();
+        MafiaBoss mafiaBoss = new MafiaBoss(bossName, 72, this.getFamily());
+        mafiaBoss.introduce();
+        System.out.println();
+        System.out.println("GAME OVER");
+        gameOver = true;
+    }
+    return gameOver;
+}
 
 }

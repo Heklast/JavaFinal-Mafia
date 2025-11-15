@@ -35,8 +35,9 @@ public class BadCop extends Human implements IllegalActivity{
     
     @Override
     public void introduce(){
-        System.out.println("Hello, calm down. I am a cop only on paper. I was thinking if you had some drugs for me.");
-        System.out.println("I'll pay really well.");
+        System.out.println("He flashes a badge… then hides it again.");
+        System.out.println("Relax. I am a cop only on paper.");
+        System.out.println("You got something for sale? I pay fast, and I pay cash.");
             }
     
 }
