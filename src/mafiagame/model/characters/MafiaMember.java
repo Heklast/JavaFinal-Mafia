@@ -178,7 +178,7 @@ public class MafiaMember extends Human implements IllegalActivity {
      *
      * @param amount the amount to add to deathChance
      */
-    public void increaseDeathChance(double amount) {
+    public void changeDeathChance(double amount) {
         this.deathChance += amount;
         if (this.deathChance > 1.0) this.deathChance = 1.0;
         if (this.deathChance < 0.0) this.deathChance = 0.0;

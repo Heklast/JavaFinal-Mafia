@@ -14,11 +14,18 @@ public class HairdresserScene {
 
     private final ConsoleUI ui;
     private static final int COLOR_CHANGE_COST = 30;
+    private static final double COLOR_DEATH_DECREASE=-0.1;
     
     public HairdresserScene(ConsoleUI ui) {
         this.ui = ui;
     }
 
+    /**
+ * Plays out the hairdresser scene
+ * choose between hair color change or just cut, if change then your death change 
+ * decreases because you are unrecognizeable and you get some gossip, but its expensive
+ * @param player
+ */
     public void play(MafiaMember player) {
         ui.println("You catch your reflection in a shop window and don't like what you see.");
         ui.println("Too recognizable. Too familiar. Too easy to find.");
@@ -60,7 +67,7 @@ public class HairdresserScene {
                 while (true) {
                     ui.println("Choose your new hair color (blonde/brunette/red/blue): ");
                     newColor = ui.readLine().trim().toLowerCase();
-
+                    
                     switch (newColor) {
                         case "blonde":
                         case "brunette":
@@ -81,6 +88,7 @@ public class HairdresserScene {
 
                 player.spendMoney(COLOR_CHANGE_COST);
                 player.setHairColor(Color.valueOf(newColor.trim().toUpperCase()));
+                player.changeDeathChance(COLOR_DEATH_DECREASE);
                 hairDresser.talk();
                 hairDresser.gossip(player);
                 ui.waitForEnter();

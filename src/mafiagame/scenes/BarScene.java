@@ -22,6 +22,13 @@ public class BarScene {
         this.copScene = copScene;
     }
 
+    /**
+ * plays out the bar scene, either bad cop or good cop comes in
+ * bad cop wants drugs
+ * good cop wants some info, if you say yes you're deathChance will increase,
+ * but you get good money
+ * @param player MafiaMember
+ */
     public void play(MafiaMember player) {
         Bartender bartender = new Bartender(
                 "Sam",

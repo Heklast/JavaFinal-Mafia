@@ -7,13 +7,13 @@ package mafiagame.model.characters;
 
 public class Bartender extends Human {
 
-    private final Boolean friendly;
+    private final boolean friendly;
 
     public Bartender(String name,
                      int age,
                      Gender gender,
                      Drink favoriteDrink,
-                     Boolean friendly) {
+                     boolean friendly) {
 
         super(name, age, gender, favoriteDrink);
         this.friendly = friendly;
@@ -32,9 +32,8 @@ public class Bartender extends Human {
      * The bartender chats a bit with the player 
      */
     public void gossip() {
-            boolean isFriendly = (friendly != null && friendly);
 
-            if (isFriendly) {
+            if (friendly) {
                 System.out.println(this.getName() + " leans in slightly.");
                 System.out.println("\"Slow night, huh? People been talking about a new barber down the street.\"");
                 System.out.println("\"And I heard the docks smell worse than usual — must be the sea.\"");

@@ -16,7 +16,9 @@ public class DockScene {
     public DockScene(ConsoleUI ui) {
         this.ui = ui;
     }
-
+/**
+ * Plays out the dock / drug deal sequence.
+ */
     public void play(MafiaMember player) {
         DockWorker dockWorker = new DockWorker();
 
@@ -55,6 +57,10 @@ public class DockScene {
         }
     }
 
+    /**
+ * decide to bribe worker and you have enough money for it
+ * @param player, dockworker
+ */
     private void bribeWorker(MafiaMember player, DockWorker dockWorker) {
         player.introduce();
         dockWorker.introduce();
@@ -66,6 +72,11 @@ public class DockScene {
         ui.println("You now have " + player.getMoney() + " dollars left.");
     }
 
+    /**
+ * unbribed, 50/50 whether the dockworker calls the cops, then you lose
+ * if he doesn't call the cops you finish the drug deal and get money
+ * @param player, dockworker
+ */
     private void handleUnbribedDock(MafiaMember player, DockWorker dockWorker) {
         ui.println("You leave to do the drug deal.");
         double random = Math.random();

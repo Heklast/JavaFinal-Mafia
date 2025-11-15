@@ -33,7 +33,7 @@ public class MafiaGame {
 
         ui.println("Welcome to Mafia City ! ");
         ui.println("REMINDER: during the game you will have to press ENTER to keep on with the game");
-        ui.println("The goal of the game is to get to 500 dollars without dying or getting arrested");
+        ui.println("The goal of the game is to get to 300 dollars without dying or getting arrested");
         ui.println("");
 
         ui.println("First, we need some information about you ! ");
@@ -124,7 +124,7 @@ public class MafiaGame {
         }
 
         // The main game loop
-        while (mafiaMember.getMoney()< 20 && !mafiaMember.getGameOver() ) {
+        while (mafiaMember.getMoney()< 300 && !mafiaMember.getGameOver() ) {
             ui.println("You still need more money if you want to get out alive.");
             ui.println("What's your next move?");
             ui.println("  (b) Hit the bar");

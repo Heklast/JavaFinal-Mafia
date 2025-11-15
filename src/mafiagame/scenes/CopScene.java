@@ -17,6 +17,10 @@ public class CopScene {
         this.ui = ui;
     }
 
+    /**
+ * Plays out the cop scene
+ * 
+ */
     public void play(MafiaMember player, Cop cop) {
         cop.introduce();
 
@@ -59,7 +63,10 @@ public class CopScene {
             handleSnitch(player, sn);
         }
     }
-
+/**
+ *  If you have secrets then you can decide to snitch, your deathChance increases but you get money
+ * @param player, snitch says if you decided to snitch
+ */
     private void handleSnitch(MafiaMember player, boolean snitch) {
         if (snitch) {
             try {
@@ -80,7 +87,7 @@ public class CopScene {
             player.addMoney(100);
             Cop.copApplausesMM(player);
 
-            player.increaseDeathChance(SNITCH_DEATH_INCREASE);
+            player.changeDeathChance(SNITCH_DEATH_INCREASE);
 
             ui.println("You snitched. Now only a matter of time Boss finds out about it");
             ui.println("But at least you are up to " + player.getMoney() + " dollars.");
