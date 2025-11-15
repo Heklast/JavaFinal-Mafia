@@ -47,7 +47,7 @@ public class CopScene {
 
             String valid;
             while (true) {
-                valid = ui.ask("Snitch or stay loyal? (y/n): ").trim().toLowerCase();
+                valid = ui.ask("Snitch (y) or stay loyal (n)? (y/n): ").trim().toLowerCase();
 
                 if ("y".equals(valid) || "n".equals(valid)) {
                     break;

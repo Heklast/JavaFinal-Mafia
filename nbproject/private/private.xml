@@ -2,6 +2,25 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/model/characters/MafiaMember.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/model/characters/Bartender.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/model/characters/HairDresser.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/model/characters/MafiaBoss.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/model/Knowledge.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/MafiaGame.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/.gitignore</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/model/characters/Human.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/scenes/HairdresserScene.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/scenes/DockScene.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/scenes/CopScene.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/scenes/BarScene.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/model/characters/DockWorker.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/model/characters/Cop.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/model/characters/ConsoleUI.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/model/characters/BadCop.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/scenes/BossScene.java</file>
+            <file>file:/C:/Users/USER/GitRepos/JavaFinal-Mafia/src/mafiagame/behavior/IllegalActivity.java</file>
+        </group>
     </open-files>
 </project-private>
