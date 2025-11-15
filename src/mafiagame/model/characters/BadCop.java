@@ -30,7 +30,7 @@ public class BadCop extends Human implements IllegalActivity{
     @Override
     public void drugDeal(MafiaMember mafiaMember){
         introduce();
-        mafiaMember.sellDrugs(this); //make this one in mafiamember
+        //mafiaMember.sellDrugs(this); //make this one in mafiamember
     }
     
     @Override

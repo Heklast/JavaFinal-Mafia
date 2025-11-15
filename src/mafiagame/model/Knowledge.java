@@ -11,6 +11,7 @@ import java.util.List;
  *
  * @author hekla
  */
+
 public class Knowledge {
     private List<String> infoList = new ArrayList<>();
 
@@ -22,7 +23,6 @@ public class Knowledge {
         infoList.add(info);
     }
 
-    // still a copy – read-only for callers
     public List<String> getInfo(){
         return new ArrayList<>(infoList);
     }
@@ -39,5 +39,16 @@ public class Knowledge {
 
     public int size(){
         return infoList.size();
+    }
+
+    public boolean hasSecrets() {
+        return !infoList.isEmpty();
+    }
+
+    public String revealFirstSecret() {
+        if (infoList.isEmpty()) {
+            return null;
+        }
+        return infoList.remove(0);
     }
 }

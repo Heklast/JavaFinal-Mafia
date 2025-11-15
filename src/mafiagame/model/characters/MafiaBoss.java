@@ -42,17 +42,13 @@ public class MafiaBoss extends MafiaMember{
         System.out.println();
         killHim(bossMan);
     }
-    public int getYearsAsBoss() {
-        return yearsAsBoss;
-    }
-
-    public Popularity getPopularity() {
-        return popularity;
-    }
-    
+     /**
+     * Killing the player.
+     * @param b BossMan who kills him
+     */
     public void killHim(BossMan b){
-        System.out.println("You betray Boss, you DIE");
-        System.out.println("BAM");
+        System.out.println("You betray my beloved Boss, you DIE");
+        System.out.println("I'll take great pleasure in killing you, traitor");
     }
 
     

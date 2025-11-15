@@ -4,6 +4,8 @@
  */
 package mafiagame.model.characters;
 
+import java.util.Scanner;
+
 /**
  *
  * @author hekla
@@ -12,7 +14,6 @@ abstract public class Human {
     
     public enum Gender{FEMALE, MALE, UNDEFINED};
     public enum Drink{BEER, WATER, FANTA};
-    
     
     private String name;
     private int age;
@@ -57,8 +58,27 @@ abstract public class Human {
     public String getsKilled(){
         return "Game Over"; //this doesnt print obvi
     }
-    public String chooseGender(){
-        return "Game Over"; //this doesnt print obvi
+    public static Gender chooseGender(Scanner s){
+         while (true) {
+            System.out.println("What gender do you want to be ?");
+            System.out.println("Male (m), female (f), undefined (u)?");
+            String input = s.nextLine().trim().toUpperCase();
+
+            switch (input) {
+                case "MALE", "M" -> {
+                    return Gender.MALE;
+                }
+                case "FEMALE", "F" -> {
+                    return Gender.FEMALE;
+                }
+                case "UNDEFINED", "U", "NONE" -> {
+                    return Gender.UNDEFINED;
+                }
+                default -> {
+                    System.out.println("Invalid choice. Please try again.");
+                }
+            }
+        }
     }
     
     abstract public void introduce();

@@ -5,7 +5,7 @@
 package mafiagame.model.characters;
 
 import java.util.Scanner;
-import static mafiagame.model.characters.MafiaMember.waitForEnter;
+//import static mafiagame.model.characters.MafiaMember.waitForEnter;
 
 /**
  *
@@ -38,7 +38,7 @@ public class Cop extends Human {
         Scanner keyboard=new Scanner(System.in);
         System.out.println("Thank you for thinking of the greater good !");
         System.out.println();
-        waitForEnter(keyboard);
+        ////waitForEnter(keyboard);
     }
 
     public void arrest(){
