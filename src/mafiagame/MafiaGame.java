@@ -124,7 +124,7 @@ public class MafiaGame {
         }
 
         // The main game loop
-        while (mafiaMember.getMoney()<130 && !mafiaMember.getGameOver() ) {
+        while (mafiaMember.getMoney()< 300 && !mafiaMember.getGameOver() ) {
             ui.println("You still need more money if you want to get out alive.");
             ui.println("What's your next move?");
             ui.println("  (b) Hit the bar");
