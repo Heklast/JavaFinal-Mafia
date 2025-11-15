@@ -12,20 +12,31 @@ import java.util.List;
  * @author hekla
  */
 public class Knowledge {
-    private String info;
-    
+    private List<String> infoList = new ArrayList<>();
+
     public Knowledge(String info){
-    this.info=info;
-    this.addInfo(info);}
-    
-    private List<String> infoList=new ArrayList<>();
-    
+        addInfo(info);
+    }
+
     public void addInfo(String info){
         infoList.add(info);
     }
+
+    // still a copy – read-only for callers
     public List<String> getInfo(){
         return new ArrayList<>(infoList);
     }
+
+    public String getFirstInfo() {
+        return infoList.isEmpty() ? null : infoList.get(0);
+    }
+
+    public void removeFirstInfo() {
+        if (!infoList.isEmpty()) {
+            infoList.remove(0);
+        }
+    }
+
     public int size(){
         return infoList.size();
     }

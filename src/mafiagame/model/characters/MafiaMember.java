@@ -388,13 +388,14 @@ public class MafiaMember extends Human {
         int amountOfInfo = (k == null) ? 0 : k.size();
 
         if (amountOfInfo == 0) {
-            System.out.println("You rack your brain, but you don't really have anything on the boss yet.");
+            System.out.println("You rack your brain, but you don't really have anything new on the boss... yet.");
+            System.out.println("'I don't have any info for you, sorry'.");
         } else {
             try {
                 System.out.println("You remember the secrets you've picked up over time...");
                 List<String> infos = k.getInfo();
 
-                String firstSecret = infos.get(0); // one piece only
+                String firstSecret = infos.get(0);
                 System.out.println("You know at least one useful thing about the boss: " + firstSecret);
             } catch (Exception e) {
                 System.out.println("Your mind goes blank for a moment. You struggle to remember details.");
@@ -428,42 +429,39 @@ public class MafiaMember extends Human {
     }
 
     public void snitch(Boolean s) {
-        if (s) {
-            try {
-                if (this.getKnowledge() != null) {
-                    List<String> infos = this.getKnowledge().getInfo();
-                    if (!infos.isEmpty()) {
-                        String revealed = infos.get(0); // one piece at a time
-                        System.out.println();
-                        System.out.println("You take a deep breath and start talking about your mafia boss.");
-                        System.out.println("You tell him that " + revealed);
-                    } else {
-                        System.out.println("You open your mouth, but nothing useful comes out.");
-                    }
-                } else {
-                    System.out.println("You try to remember, but you never really paid attention to the boss.");
-                }
-            } catch (Exception e) {
-                System.out.println("Your thoughts get tangled. You can't remember the details clearly.");
+    if (s) {
+        try {
+            if (this.getKnowledge() != null && this.getKnowledge().size() > 0) {
+                String revealed = this.getKnowledge().getFirstInfo();
+                System.out.println();
+                System.out.println("You take a deep breath and start talking about your mafia boss.");
+                System.out.println("You tell him that " + revealed);
+                this.getKnowledge().removeFirstInfo();
+                System.out.println(this.getKnowledge().getInfo());
+            } else {
+                System.out.println("You open your mouth, but nothing useful comes out.");
             }
-
-            money += 100;
-            Cop.copApplausesMM(this);
-
-            deathChance += 0.2;
-            if (deathChance > 1.0) {
-                deathChance = 1.0; // cap at 100%
-            }
-
-            System.out.println("Word like that doesn't stay secret for long.");
-            System.out.println("If the boss hears about this, you're done.");
-            System.out.println("But for now, you walk away with " + this.money + " dollars.");
-        } else {
-            System.out.println("You stare at the cop, then look away.");
-            System.out.println("\"I don't know anything,\" you say.");
-            System.out.println("Loyalty might save you. Or doom you.");
+        } catch (Exception e) {
+            System.out.println("Your thoughts get tangled. You can't remember the details clearly.");
         }
+
+        money += 100;
+        Cop.copApplausesMM(this);
+
+        deathChance += 0.2;
+        if (deathChance > 1.0) {
+            deathChance = 1.0;
+        }
+
+        System.out.println("Word like that doesn't stay secret for long.");
+        System.out.println("If the boss hears about this, you're done.");
+        System.out.println("But for now, you walk away with " + this.money + " dollars.");
+    } else {
+        System.out.println("You stare at the cop, then look away.");
+        System.out.println("\"I don't know anything,\" you say.");
+        System.out.println("Loyalty might save you. Or doom you.");
     }
+}
 
     public void bribeWorker(DockWorker dockWorker) {
         if (this.money < 70) {

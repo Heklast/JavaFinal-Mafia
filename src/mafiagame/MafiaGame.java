@@ -76,7 +76,6 @@ public class MafiaGame {
         while (!mafiaMember.getGameOver()) {
             mafiaMember.whereToGoNext();
             mafiaMember.doYouDie();
-
         }
 
         /**
