@@ -80,6 +80,6 @@ abstract public class Human {
     }
     
     public static boolean isAgeOkay(int age){
-        return age>=0;
+        return age>0 && age<100;
     }
 }
