@@ -19,6 +19,7 @@ import mafiagame.scenes.BossScene;
 import mafiagame.scenes.CopScene;
 import mafiagame.scenes.DockScene;
 import mafiagame.scenes.HairdresserScene;
+import mafiagame.ui.ConsoleUI;
 
 /**
  *

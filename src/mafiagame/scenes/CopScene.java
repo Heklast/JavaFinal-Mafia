@@ -1,6 +1,6 @@
 package mafiagame.scenes;
 
-import mafiagame.ConsoleUI;
+import mafiagame.ui.ConsoleUI;
 import mafiagame.model.characters.Cop;
 import mafiagame.model.characters.MafiaMember;
 import mafiagame.model.Knowledge;

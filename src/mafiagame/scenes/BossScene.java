@@ -4,7 +4,7 @@
  */
 package mafiagame.scenes;
 
-import mafiagame.ConsoleUI;
+import mafiagame.ui.ConsoleUI;
 import mafiagame.model.characters.MafiaBoss;
 import mafiagame.model.characters.MafiaMember;
 

@@ -1,6 +1,6 @@
 package mafiagame.scenes;
 
-import mafiagame.ConsoleUI;
+import mafiagame.ui.ConsoleUI;
 import mafiagame.model.characters.HairDresser;
 import mafiagame.model.characters.Human.Drink;
 import mafiagame.model.characters.Human.Gender;

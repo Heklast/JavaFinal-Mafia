@@ -1,15 +1,11 @@
 package mafiagame.scenes;
 
-import mafiagame.ConsoleUI;
-import mafiagame.model.characters.Bartender;
-import mafiagame.model.characters.BadCop;
+import mafiagame.ui.ConsoleUI;
 import mafiagame.model.characters.BadCop;
 import mafiagame.model.characters.Bartender;
-import mafiagame.model.characters.Cop;
 import mafiagame.model.characters.Cop;
 import mafiagame.model.characters.Human.Drink;
 import mafiagame.model.characters.Human.Gender;
-import mafiagame.model.characters.MafiaMember;
 import mafiagame.model.characters.MafiaMember;
 
 /**

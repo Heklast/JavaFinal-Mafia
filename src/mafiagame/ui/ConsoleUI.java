@@ -1,4 +1,4 @@
-package mafiagame;
+package mafiagame.ui;
 
 import java.util.Scanner;
 

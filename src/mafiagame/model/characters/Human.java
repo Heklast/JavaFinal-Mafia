@@ -4,8 +4,6 @@
  */
 package mafiagame.model.characters;
 
-import java.util.Scanner;
-
 /**
  *
  * @author hekla

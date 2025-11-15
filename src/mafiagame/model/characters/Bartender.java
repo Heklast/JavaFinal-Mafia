@@ -45,7 +45,7 @@ public class Bartender extends Human {
     }
 
     /**
-     * Bartender cannot change hair color. He will politely redirect you.
+     * Bartender cannot change hair colour. He will politely redirect you.
      */
     public void changeHairColor(Human human) {
         try {
