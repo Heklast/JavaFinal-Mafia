@@ -2,8 +2,6 @@ package mafiagame.scenes;
 
 import mafiagame.ConsoleUI;
 import mafiagame.model.characters.DockWorker;
-import mafiagame.model.characters.DockWorker;
-import mafiagame.model.characters.MafiaMember;
 import mafiagame.model.characters.MafiaMember;
 
 /**
@@ -42,7 +40,7 @@ public class DockScene {
         }
 
         if ("bribe".equals(bribeChoice)) {
-            if (player.canAfford(70)) {
+            if (player.canAfford(BRIBE_AMOUNT)) {
                 bribeWorker(player, dockWorker);
                 dockWorker.setBribed(true);
                 ui.waitForEnter();

@@ -11,7 +11,8 @@ import mafiagame.model.characters.MafiaMember.Color;
 public class HairdresserScene {
 
     private final ConsoleUI ui;
-
+    private static final int COLOR_CHANGE_COST = 30;
+    
     public HairdresserScene(ConsoleUI ui) {
         this.ui = ui;
     }
@@ -33,11 +34,11 @@ public class HairdresserScene {
         ui.waitForEnter();
 
         ui.println("If you change it completely, it'll be harder for anyone to track you down.");
-        ui.println("A full color change costs 30 dollars.");
+        ui.println("A full color change costs " + COLOR_CHANGE_COST + "dollars.");
         ui.println("You currently have " + player.getMoney() + " dollars.");
         ui.println("");
 
-        if (player.getMoney() > 30) {
+        if (player.getMoney() >= COLOR_CHANGE_COST) {
             ui.println("The hairdresser seems chatty. Chatty people hear things.");
             ui.println("Maybe you'll walk out with a new look… and some new gossip.");
 
@@ -76,7 +77,7 @@ public class HairdresserScene {
                     break;
                 }
 
-                player.spendMoney(30);
+                player.spendMoney(COLOR_CHANGE_COST);
                 player.setHairColor(Color.valueOf(newColor.trim().toUpperCase()));
                 hairDresser.talk();
                 hairDresser.gossip(player);

@@ -13,14 +13,20 @@ import java.util.List;
  */
 
 public class Knowledge {
-    private List<String> infoList = new ArrayList<>();
+    private final List<String> infoList = new ArrayList<>();
 
     public Knowledge(String info){
         addInfo(info);
     }
 
     public void addInfo(String info){
-        infoList.add(info);
+        if (info == null){
+            return;
+        }
+        String trimmed = info.trim();
+        if (!trimmed.isEmpty()){
+            infoList.add(trimmed);
+        }
     }
 
     public List<String> getInfo(){

@@ -11,7 +11,7 @@ import java.util.Random;
  * @author hekla
  */
 public class HairDresser extends Human{
-    private String favActor;
+    private final String favActor;
     private static final String[] gossip={
         "he is going to the docks tomorrow at 4",
         "next time he wants to change his hair to green",

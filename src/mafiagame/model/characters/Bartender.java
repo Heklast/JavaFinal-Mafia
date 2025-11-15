@@ -7,7 +7,7 @@ package mafiagame.model.characters;
 
 public class Bartender extends Human {
 
-    private Boolean friendly;
+    private final Boolean friendly;
 
     public Bartender(String name,
                      int age,

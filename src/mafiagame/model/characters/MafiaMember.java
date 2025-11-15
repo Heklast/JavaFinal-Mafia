@@ -14,8 +14,6 @@ import mafiagame.model.Knowledge;
  * change hair color to hide, and interact with other characters like cops,
  * bartenders and dock workers.
  *
- * In this refactored version, MafiaMember focuses on game state and rules,
- * while story text and input/output are handled elsewhere (scenes/UI).
  *
  * @author hekla
  */
@@ -61,6 +59,15 @@ public class MafiaMember extends Human {
 
     /**
      * Creates a fully initialized {@code MafiaMember}.
+     * @param name
+     * @param gender
+     * @param age
+     * @param favoriteDrink
+     * @param hairColor
+     * @param belongsToFamily
+     * @param money
+     * @param gameOver
+     * @param knowledge
      */
     public MafiaMember(String name,
                        int age,
@@ -81,6 +88,13 @@ public class MafiaMember extends Human {
 
     /**
      * Creates a {@code MafiaMember} without knowledge and explicit game-over state.
+     * @param name
+     * @param gender
+     * @param age
+     * @param favoriteDrink
+     * @param hairColor
+     * @param belongsToFamily
+     * @param money
      */
     public MafiaMember(String name,
                        int age,
@@ -102,7 +116,7 @@ public class MafiaMember extends Human {
      * flow is handled in scene classes.
      */
     @Override
-    public void introduce() {
+    public final void introduce() {
         System.out.println("My name is " + this.getName()
                 + ". You remember it, you keep it quiet. Got it?");
         System.out.println("One last big score and I'm out of this life for good...");
@@ -182,6 +196,7 @@ public class MafiaMember extends Human {
 
     /**
      * Just peek at the first secret without removing it.
+     * @return 
      */
     public String peekFirstSecret() {
         if (knowledge == null) return null;
@@ -190,6 +205,7 @@ public class MafiaMember extends Human {
 
     /**
      * Reveal and remove the first secret.
+     * @return
      */
     public String revealFirstSecret() {
         if (knowledge == null) return null;
