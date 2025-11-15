@@ -124,7 +124,7 @@ public class MafiaGame {
         }
 
         // The main game loop
-        while (mafiaMember.getMoney()< 300 && !mafiaMember.getGameOver() ) {
+        while (mafiaMember.getMoney()< 20 && !mafiaMember.getGameOver() ) {
             ui.println("You still need more money if you want to get out alive.");
             ui.println("What's your next move?");
             ui.println("  (b) Hit the bar");
@@ -168,11 +168,12 @@ public class MafiaGame {
                     ui.println("");
                 }
             }
-        }
-        if(mafiaMember.getMoney()>=500){
+            if(mafiaMember.getMoney()>=300){
             System.out.println("You are free from the Mafia ! CONGRATULATIONS !");
             System.out.println("Enjoy your life !!!!");
         }
+        }
+
     }
 
     // helper methods for initial character creation, make sure we have the right input
