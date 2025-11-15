@@ -449,5 +449,20 @@ public void changeHairColor() {
         System.out.println("He nods slowly. Fear does the rest.");
         System.out.println("You now have " + this.money + " dollars left.");
     }
+    
+    public boolean doYouDie() {
+        System.out.println("Your current chance of getting whacked is: " + (deathChance * 100) + "%");
+        double roll = Math.random();
+        System.out.println("The night rolls the dice... (" + roll + ")");
+        if (roll < deathChance) {
+            String bossName = "Don " + this.getFamily();
+            MafiaBoss mafiaBoss = new MafiaBoss(bossName, 72, this.getFamily());
+            mafiaBoss.introduce();
+            System.out.println();
+            System.out.println("GAME OVER");
+            gameOver = true;
+        }
+        return gameOver;
+    }
 
 }
